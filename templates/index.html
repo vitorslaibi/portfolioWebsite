@@ -17,7 +17,7 @@
 <section class="featured-projects">
     <h2 class="section-title">Featured Projects</h2>
     <div class="projects-grid">
-        {% for project in get_projects()[:3] %}
+        {% for project in projects %}
         <div class="project-card">
             <div class="project-image">
                 <img src="{{ project.image }}" alt="{{ project.title }}">

@@ -1,0 +1,47 @@
+<!-- templates/add_project.html -->
+{% extends "base.html" %}
+{% block title %}Add Project | My Portfolio{% endblock %}
+{% block content %}
+<section class="admin-form">
+    <a href="{{ url_for('admin') }}" class="back-link"><i class="fas fa-arrow-left"></i> Back to Admin</a>
+    
+    <h1 class="page-title">Add New Project</h1>
+    
+    <form action="{{ url_for('add_project') }}" method="POST">
+        <div class="form-group">
+            <label for="title">Project Title</label>
+            <input type="text" id="title" name="title" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" rows="5" required></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="technologies">Technologies (comma separated)</label>
+            <input type="text" id="technologies" name="technologies" placeholder="HTML, CSS, JavaScript" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="image">Image URL</label>
+            <input type="text" id="image" name="image" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="github">GitHub URL (optional)</label>
+            <input type="text" id="github" name="github">
+        </div>
+        
+        <div class="form-group">
+            <label for="live_demo">Live Demo URL (optional)</label>
+            <input type="text" id="live_demo" name="live_demo">
+        </div>
+        
+        <div class="form-actions">
+            <button type="submit" class="btn primary">Add Project</button>
+            <a href="{{ url_for('admin') }}" class="btn secondary">Cancel</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

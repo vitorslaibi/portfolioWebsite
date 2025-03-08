@@ -1,0 +1,47 @@
+<!-- templates/edit_project.html -->
+{% extends "base.html" %}
+{% block title %}Edit Project | My Portfolio{% endblock %}
+{% block content %}
+<section class="admin-form">
+    <a href="{{ url_for('admin') }}" class="back-link"><i class="fas fa-arrow-left"></i> Back to Admin</a>
+    
+    <h1 class="page-title">Edit Project</h1>
+    
+    <form action="{{ url_for('edit_project', project_id=project_id) }}" method="POST">
+        <div class="form-group">
+            <label for="title">Project Title</label>
+            <input type="text" id="title" name="title" value="{{ project.title }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" rows="5" required>{{ project.description }}</textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="technologies">Technologies (comma separated)</label>
+            <input type="text" id="technologies" name="technologies" value="{{ project.technologies|join(', ') }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="image">Image URL</label>
+            <input type="text" id="image" name="image" value="{{ project.image }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="github">GitHub URL (optional)</label>
+            <input type="text" id="github" name="github" value="{{ project.github }}">
+        </div>
+        
+        <div class="form-group">
+            <label for="live_demo">Live Demo URL (optional)</label>
+            <input type="text" id="live_demo" name="live_demo" value="{{ project.live_demo }}">
+        </div>
+        
+        <div class="form-actions">
+            <button type="submit" class="btn primary">Update Project</button>
+            <a href="{{ url_for('admin') }}" class="btn secondary">Cancel</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

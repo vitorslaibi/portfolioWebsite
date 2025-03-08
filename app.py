@@ -1,10 +1,15 @@
 # app.py
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 import json
 import os
 from datetime import datetime
+from filters import blueprint as filters_blueprint
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key_here'  # Required for flash messages
+
+# Register custom filters
+app.register_blueprint(filters_blueprint)
 
 # Load projects from JSON file
 def get_projects():
@@ -20,10 +25,53 @@ def save_projects(projects):
     with open('projects.json', 'w') as file:
         json.dump(projects, file, indent=4)
 
+# Create example projects for demonstration
+def create_example_projects():
+    example_projects = [
+        {
+            'title': 'Personal Blog',
+            'description': 'A responsive blog website built with Flask and SQLAlchemy. Features include user authentication, comments, and a custom admin dashboard for content management.',
+            'technologies': ['Python', 'Flask', 'SQLAlchemy', 'HTML', 'CSS', 'JavaScript'],
+            'image': '/static/img/projects/blog.jpg',
+            'github': 'https://github.com/yourusername/blog-project',
+            'live_demo': 'https://example.com/blog',
+            'date': '2023-11-15'
+        },
+        {
+            'title': 'Weather App',
+            'description': 'A web application that displays weather information based on user location or search. Utilizes the OpenWeatherMap API to fetch current weather data and forecasts.',
+            'technologies': ['JavaScript', 'HTML', 'CSS', 'APIs', 'Responsive Design'],
+            'image': '/static/img/projects/weather.jpg',
+            'github': 'https://github.com/yourusername/weather-app',
+            'live_demo': 'https://example.com/weather',
+            'date': '2023-09-20'
+        },
+        {
+            'title': 'E-commerce Platform',
+            'description': 'A full-featured e-commerce platform with product catalog, shopping cart, user accounts, and payment integration using Stripe. Built with Flask and MongoDB.',
+            'technologies': ['Python', 'Flask', 'MongoDB', 'Stripe API', 'HTML', 'CSS', 'JavaScript'],
+            'image': '/static/img/projects/ecommerce.jpg',
+            'github': 'https://github.com/yourusername/ecommerce-platform',
+            'live_demo': 'https://example.com/shop',
+            'date': '2024-01-10'
+        },
+        {
+            'title': 'Task Manager',
+            'description': 'A productivity application for managing tasks and projects. Features include drag-and-drop organization, priority levels, due dates, and collaborative features.',
+            'technologies': ['JavaScript', 'React', 'CSS', 'Node.js', 'Express', 'MongoDB'],
+            'image': '/static/img/projects/taskmanager.jpg',
+            'github': 'https://github.com/yourusername/task-manager',
+            'live_demo': 'https://example.com/tasks',
+            'date': '2023-12-05'
+        }
+    ]
+    return example_projects
+
 # Home page route
 @app.route('/')
 def home():
-    return render_template('index.html', active_page='home')
+    projects = get_projects()[:3]  # Get only first 3 projects for featured section
+    return render_template('index.html', active_page='home', projects=projects)
 
 # About page route
 @app.route('/about')
@@ -45,8 +93,13 @@ def project_detail(project_id):
     return redirect(url_for('projects'))
 
 # Contact page route
-@app.route('/contact')
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
+    if request.method == 'POST':
+        # In a real application, you would process the form data here
+        # For example, send an email or save to a database
+        flash('Your message has been sent successfully!', 'success')
+        return redirect(url_for('contact'))
     return render_template('contact.html', active_page='contact')
 
 # Admin routes (you would add authentication in a real application)
@@ -70,6 +123,7 @@ def add_project():
         }
         projects_list.append(new_project)
         save_projects(projects_list)
+        flash('Project added successfully!', 'success')
         return redirect(url_for('admin'))
     return render_template('add_project.html', active_page='admin')
 
@@ -88,6 +142,7 @@ def edit_project(project_id):
                 'date': projects_list[project_id].get('date')
             }
             save_projects(projects_list)
+            flash('Project updated successfully!', 'success')
             return redirect(url_for('admin'))
         return render_template('edit_project.html', project=projects_list[project_id], project_id=project_id, active_page='admin')
     return redirect(url_for('admin'))
@@ -98,10 +153,28 @@ def delete_project(project_id):
     if 0 <= project_id < len(projects_list):
         projects_list.pop(project_id)
         save_projects(projects_list)
+        flash('Project deleted successfully!', 'success')
     return redirect(url_for('admin'))
 
-if __name__ == '__main__':
-    # Create projects.json if it doesn't exist
+# Create the necessary directories
+def setup_application():
+    # Create static directories if they don't exist
+    for directory in ['static/css', 'static/js', 'static/img', 'static/img/projects']:
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+    
+    # Create templates directory if it doesn't exist
+    if not os.path.exists('templates'):
+        os.makedirs('templates')
+    
+    # Create example projects.json if it doesn't exist
     if not os.path.exists('projects.json'):
-        save_projects([])
+        example_projects = create_example_projects()
+        save_projects(example_projects)
+
+if __name__ == '__main__':
+    # Setup application directories and example data
+    setup_application()
+    
+    # Run the Flask application
     app.run(debug=True)

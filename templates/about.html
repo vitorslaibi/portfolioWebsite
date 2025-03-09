@@ -1,30 +1,57 @@
 <!-- templates/about.html -->
 {% extends "base.html" %}
-{% block title %}About | My Portfolio{% endblock %}
+{% block title %}About | Data Science Portfolio{% endblock %}
 {% block content %}
 <section class="about">
     <h1 class="page-title">About Me</h1>
     <div class="about-content">
         <div class="about-image">
-            <img src="{{ url_for('static', filename='img/profile.jpg') }}" alt="Your Name">
+            <img src="{{ url_for('static', filename='img/profile.jpg') }}" alt="Vitor">
         </div>
         <div class="about-text">
-            <h2>Your Name</h2>
-            <h3>Web Developer & Designer</h3>
+            <h2>Vitor</h2>
+            <h3>Data Scientist & Analytics Professional</h3>
             <p>
-                Welcome to my portfolio! I'm a passionate web developer with expertise in creating responsive and user-friendly websites. 
-                With over X years of experience in the field, I've developed a strong skill set in both frontend and backend technologies.
+                Welcome to my portfolio! I'm a passionate data scientist with expertise in transforming complex data into actionable insights. 
+                With a strong foundation in statistics, machine learning, and programming, I specialize in solving challenging business problems through data-driven approaches.
             </p>
             <p>
-                I specialize in Python, Flask, JavaScript, and modern frontend frameworks. My goal is to build applications that not only look great 
-                but also provide an excellent user experience and solve real-world problems.
+                My expertise includes predictive modeling, statistical analysis, and data visualization. I have experience working with large-scale datasets 
+                and implementing machine learning solutions that drive business value. I'm particularly interested in [Your Specific Interests, e.g., NLP, Computer Vision, Time Series Analysis].
             </p>
-            <h3>Education</h3>
-            <p>Bachelor of Science in Computer Science - Your University (20XX-20XX)</p>
+
+            <h3>Areas of Expertise</h3>
+            <ul class="expertise-list">
+                <li>Statistical Analysis & Hypothesis Testing</li>
+                <li>Machine Learning & Predictive Modeling</li>
+                <li>Data Visualization & Business Intelligence</li>
+                <li>Big Data Processing & Analytics</li>
+                <li>A/B Testing & Experimentation</li>
+            </ul>
             
-            <h3>Experience</h3>
-            <p>Web Developer - Company Name (20XX-Present)</p>
-            <p>Junior Developer - Another Company (20XX-20XX)</p>
+            <h3>Education</h3>
+            <p>Master of Science in Data Science - Your University (20XX-20XX)</p>
+            <p>Bachelor of Science in Statistics/Mathematics - Your University (20XX-20XX)</p>
+            
+            <h3>Professional Experience</h3>
+            <p>Senior Data Scientist - Company Name (20XX-Present)</p>
+            <ul class="experience-details">
+                <li>Led end-to-end machine learning projects resulting in X% improvement in key metrics</li>
+                <li>Developed automated data pipelines processing X TB of data daily</li>
+                <li>Created interactive dashboards for real-time business monitoring</li>
+            </ul>
+            <p>Data Analyst - Another Company (20XX-20XX)</p>
+            <ul class="experience-details">
+                <li>Conducted statistical analyses to optimize business processes</li>
+                <li>Built predictive models for customer behavior analysis</li>
+            </ul>
+            
+            <h3>Certifications</h3>
+            <ul class="certifications-list">
+                <li>AWS Certified Machine Learning - Specialty</li>
+                <li>Google Data Analytics Professional Certificate</li>
+                <li>Deep Learning Specialization - Coursera</li>
+            </ul>
             
             <a href="{{ url_for('static', filename='resume.pdf') }}" class="btn primary" target="_blank">Download Resume</a>
         </div>

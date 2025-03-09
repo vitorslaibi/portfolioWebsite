@@ -1,21 +1,21 @@
 <!-- templates/index.html -->
 {% extends "base.html" %}
-{% block title %}Home | My Portfolio{% endblock %}
+{% block title %}Home | Data Science Portfolio{% endblock %}
 {% block content %}
 <section class="hero">
     <div class="hero-content">
-        <h1>Hello, I'm <span class="highlight">Your Name</span></h1>
-        <h2>Web Developer & Designer</h2>
-        <p>I create beautiful and functional websites with clean code.</p>
+        <h1>Hello, I'm <span class="highlight">Vitor</span></h1>
+        <h2>Data Scientist & Analytics Professional</h2>
+        <p>I transform complex data into actionable insights and build machine learning solutions that drive business value.</p>
         <div class="cta-buttons">
-            <a href="{{ url_for('projects') }}" class="btn primary">View My Work</a>
+            <a href="{{ url_for('projects') }}" class="btn primary">View My Projects</a>
             <a href="{{ url_for('contact') }}" class="btn secondary">Contact Me</a>
         </div>
     </div>
 </section>
 
 <section class="featured-projects">
-    <h2 class="section-title">Featured Projects</h2>
+    <h2 class="section-title">Featured Analysis Projects</h2>
     <div class="projects-grid">
         {% for project in projects %}
         <div class="project-card">
@@ -25,7 +25,7 @@
             <div class="project-info">
                 <h3>{{ project.title }}</h3>
                 <p>{{ project.description|truncate(100) }}</p>
-                <a href="{{ url_for('project_detail', project_id=loop.index0) }}" class="btn small">View Project</a>
+                <a href="{{ url_for('project_detail', project_id=loop.index0) }}" class="btn small">View Analysis</a>
             </div>
         </div>
         {% else %}
@@ -35,33 +35,42 @@
 </section>
 
 <section class="skills">
-    <h2 class="section-title">My Skills</h2>
+    <h2 class="section-title">Technical Skills</h2>
     <div class="skills-grid">
         <div class="skill-category">
-            <h3>Frontend</h3>
+            <h3>Data Analysis</h3>
             <ul>
-                <li>HTML5</li>
-                <li>CSS3</li>
-                <li>JavaScript</li>
-                <li>React</li>
+                <li>Python (Pandas, NumPy)</li>
+                <li>SQL</li>
+                <li>R</li>
+                <li>Statistical Analysis</li>
             </ul>
         </div>
         <div class="skill-category">
-            <h3>Backend</h3>
+            <h3>Machine Learning</h3>
             <ul>
-                <li>Python</li>
-                <li>Flask</li>
-                <li>Node.js</li>
-                <li>MongoDB</li>
+                <li>Scikit-learn</li>
+                <li>TensorFlow</li>
+                <li>Deep Learning</li>
+                <li>Natural Language Processing</li>
             </ul>
         </div>
         <div class="skill-category">
-            <h3>Tools</h3>
+            <h3>Visualization</h3>
+            <ul>
+                <li>Tableau</li>
+                <li>Power BI</li>
+                <li>Matplotlib</li>
+                <li>Seaborn</li>
+            </ul>
+        </div>
+        <div class="skill-category">
+            <h3>Tools & Technologies</h3>
             <ul>
                 <li>Git</li>
-                <li>VS Code</li>
-                <li>Docker</li>
-                <li>AWS</li>
+                <li>Jupyter Notebooks</li>
+                <li>AWS/Cloud Computing</li>
+                <li>Big Data (Spark)</li>
             </ul>
         </div>
     </div>

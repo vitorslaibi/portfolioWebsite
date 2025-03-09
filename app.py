@@ -70,7 +70,7 @@ def create_example_projects():
 # Home page route
 @app.route('/')
 def home():
-    projects = get_projects()[:3]  # Get only first 3 projects for featured section
+    projects = get_projects()[:2]  # Get only first 2 projects for featured section
     return render_template('index.html', active_page='home', projects=projects)
 
 # About page route
@@ -80,7 +80,7 @@ def about():
 
 # Projects page route
 @app.route('/projects')
-def projects():
+def projects_page():
     projects_list = get_projects()
     return render_template('projects.html', projects=projects_list, active_page='projects')
 
@@ -172,9 +172,14 @@ def setup_application():
         example_projects = create_example_projects()
         save_projects(example_projects)
 
+# Context processor for current year
+@app.context_processor
+def inject_now():
+    return {'now': datetime.utcnow}
+
 if __name__ == '__main__':
     # Setup application directories and example data
     setup_application()
     
     # Run the Flask application
-    app.run(debug=True)
+    app.run(debug=False)

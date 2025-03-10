@@ -1,1 +1,19 @@
-[]
+[
+    {
+        "title": "Sports Analytics Prediction System",
+        "description": "\u2022 Developed an advanced machine learning pipeline combining genetic algorithms and ensemble methods to predict game scores across multiple professional sports leagues (NFL, NBA, Soccer), achieving R\u00b2 scores of up to 0.82.\r\n\u2022 Engineered a weighted historical feature engineering system, improving prediction accuracy by up to 15% and reducing RMSE by 20% compared to baseline models.\r\n\u2022 Implemented automated web scraping modules using BeautifulSoup4 to collect and process over 500 GB of game statistics from professional sports reference websites, building datasets with over 40 statistical features per game",
+        "technologies": [
+            "Python",
+            " scikit-learn",
+            " XGBoost",
+            " pandas",
+            " NumPy",
+            " BeautifulSoup",
+            " SQL"
+        ],
+        "image": "static/img/projects/sport-ball.png",
+        "github": "https://github.com/vitorslaibi/thesisCode",
+        "live_demo": "",
+        "date": "2025-03-10"
+    }
+]
